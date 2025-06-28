@@ -23,12 +23,12 @@ const LAST_SENT_URLS_CACHE = path.resolve(__dirname, '../.indexnow_cache.json');
 // Fungsi untuk mendapatkan semua URL video langsung dari JSON
 async function getAllVideoUrls() {
     try {
-        // Impor langsung file JSON
+        // IMPORTANT CHANGE HERE: Add assert { type: 'json' }
         const videosModule = await import(VIDEOS_JSON_PATH, { assert: { type: 'json' } });
         const allVideos = videosModule.default; 
 
         if (!Array.isArray(allVideos)) {
-            console.error('Data videos.json tidak dalam format array yang diharapkan.');
+            console.error('Data videos.json is not in the expected array format.');
             return [];
         }
 
