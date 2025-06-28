@@ -1,3 +1,13 @@
+// scripts/notify-indexnow.js
+import fetch from 'node-fetch';
+import fs from 'fs/promises'; // Using fs/promises for asynchronous file operations
+import path from 'path';     // <--- ENSURE THIS LINE IS PRESENT AND CORRECT
+import { fileURLToPath } from 'url';
+
+// Get __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename); // 'path' is used here
+
 // --- Konfigurasi Anda ---
 const YOUR_DOMAIN = 'https://bokepkaraoke.pages.dev'; // Ganti dengan domain Anda yang sebenarnya
 const API_KEY_NAME = '0ddba14269f0446280912b339a1e17a2'; // Ganti dengan GUID Anda
