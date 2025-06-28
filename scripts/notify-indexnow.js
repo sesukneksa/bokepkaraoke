@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename); // 'path' is used here
 
 // --- Konfigurasi Anda ---
 const YOUR_DOMAIN = 'https://bokepkaraoke.pages.dev'; // Ganti dengan domain Anda yang sebenarnya
-const API_KEY_NAME = '0ddba14269f0446280912b339a1e17a2'; // Ganti dengan GUID Anda
+const API_KEY_NAME = '3a581610967c47aeb1966ec3f7a76168'; // Ganti dengan GUID Anda
 const API_KEY_LOCATION = `${YOUR_DOMAIN}/${API_KEY_NAME}.txt`;
 const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/IndexNow';
 // --- Akhir Konfigurasi ---
