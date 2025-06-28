@@ -24,9 +24,8 @@ const LAST_SENT_URLS_CACHE = path.resolve(__dirname, '../.indexnow_cache.json');
 async function getAllVideoUrls() {
     try {
         // Impor langsung file JSON
-        const videosData = await import(VIDEOS_JSON_PATH);
-        // Akses default export dari JSON
-        const allVideos = videosData.default; 
+        const videosModule = await import(VIDEOS_JSON_PATH, { assert: { type: 'json' } });
+        const allVideos = videosModule.default; 
 
         if (!Array.isArray(allVideos)) {
             console.error('Data videos.json tidak dalam format array yang diharapkan.');
