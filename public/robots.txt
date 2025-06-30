@@ -3,7 +3,7 @@ Disallow: /?s=*
 Disallow: /?q=*
 Disallow: /search/*
 
-
+Allow: 
 Allow: /video/*
 Allow: /category/*
 

@@ -57,34 +57,31 @@ const videoDetailPath = `${url}/${videoSlug}-${video.id}/`;
     const videoPreview = card.querySelector('.video-preview');
 
     if (videoPreview) {
-      let playTimeout; // Gunakan timeout untuk menunda pemutaran
+      // playTimeout is no longer needed for the delay, but we'll keep it for desktop-specific logic if needed elsewhere.
+      // If this is the only place it's used, you can actually remove `let playTimeout;` entirely.
 
       card.addEventListener('mouseenter', () => {
-        // Hapus timeout sebelumnya jika ada
-        clearTimeout(playTimeout); 
+        // No clearTimeout(playTimeout) here, as there's no timeout to clear for instant playback.
         
-        // Atur timeout untuk memulai pemutaran setelah sedikit penundaan
-        playTimeout = setTimeout(() => {
-          if (!card.classList.contains('video-preview-error')) {
-            const src = videoPreview.getAttribute('data-src');
-            if (src && videoPreview.src !== src) {
-              videoPreview.src = src;
-              videoPreview.load();
-            }
-            videoPreview.play().catch(e => {
-              console.warn('Video playback failed, adding error class:', e);
-              card.classList.add('video-preview-error');
-            });
+        // Directly execute the playback logic without any delay
+        if (!card.classList.contains('video-preview-error')) {
+          const src = videoPreview.getAttribute('data-src');
+          if (src && videoPreview.src !== src) {
+            videoPreview.src = src;
+            videoPreview.load();
           }
-        }, 50); // Tunda 500ms (setengah detik)
+          videoPreview.play().catch(e => {
+            console.warn('Video playback failed, adding error class:', e);
+            card.classList.add('video-preview-error');
+          });
+        }
       });
 
       card.addEventListener('mouseleave', () => {
-        // Hapus timeout jika mouse keluar sebelum video sempat diputar
-        clearTimeout(playTimeout); 
+        // No clearTimeout(playTimeout) here, as there's no pending timeout from mouseenter.
         if (videoPreview && !videoPreview.paused) {
           videoPreview.pause();
-          videoPreview.currentTime = 0; // Reset ke awal
+          videoPreview.currentTime = 0; // Reset to start
         }
       });
     }
